@@ -1,0 +1,23 @@
+model raw_books {
+  Id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Name            String?
+  Authors         String?
+  ISBN            String?
+  Rating          Decimal? @db.Decimal
+  PublishYear     Int?
+  PublishMonth    Int?
+  PublishDay      Int?
+  Publisher       String?
+  RatingDist5     String?
+  RatingDist4     String?
+  RatingDist3     String?
+  RatingDist2     String?
+  RatingDist1     String?
+  RatingDistTotal String?
+  CountsOfReview  Int?
+  Language        String?
+  pagesNumber     Int?
+  Description     String?
+
+  @@schema("bodhy_db")
+}

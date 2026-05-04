@@ -1,0 +1,15 @@
+model book_statistics {
+  book_id           String   @id @db.Uuid
+  average_rating    Decimal? @default(0) @db.Decimal(3, 2)
+  rating_dist_5     Int?     @default(0)
+  rating_dist_4     Int?     @default(0)
+  rating_dist_3     Int?     @default(0)
+  rating_dist_2     Int?     @default(0)
+  rating_dist_1     Int?     @default(0)
+  rating_dist_total Int?     @default(0)
+  review_count      Int?     @default(0)
+  books             books    @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([average_rating(sort: Desc)], map: "idx_stats_rating")
+  @@schema("bodhy_db")
+}
