@@ -1,0 +1,21 @@
+model books {
+  id              String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  external_id     String?          @unique
+  title           String
+
+  isbn            String?          @unique
+  author_id       String?          @db.Uuid
+  publisher_id    String?          @db.Uuid
+
+  created_at      DateTime         @default(now())
+
+  authors         authors?         @relation(fields: [author_id], references: [id])
+
+  publishers      publishers?      @relation(fields: [publisher_id], references: [id])
+
+  book_content    book_content?
+  book_metadata   book_metadata?
+  book_statistics book_statistics?
+
+  @@schema("bodhy_db")
+}
